@@ -424,6 +424,25 @@ const foodSearchInput = document.getElementById("foodSearchInput");
 
 const foodSearchResults = document.getElementById("foodSearchResults");
 
+// ==================================================
+// MY FOODS - SAVED FOOD STORAGE
+// ==================================================
+
+let savedFoods = [];
+
+try {
+    savedFoods = JSON.parse(localStorage.getItem("myNutritionSavedFoods")) || [];
+} catch (error) {
+    savedFoods = [];
+}
+
+function saveSavedFoods() {
+    localStorage.setItem(
+        "myNutritionSavedFoods",
+        JSON.stringify(savedFoods)
+    );
+}
+
 foodSearchButton.addEventListener("click", searchFoodDatabase);
 
 async function searchFoodDatabase() {
