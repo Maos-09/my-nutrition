@@ -1,0 +1,147 @@
+
+/* ==================================================
+   MY NUTRITION - COLOUR THEME
+================================================== */
+
+:root {
+
+    /* BACKGROUNDS */
+    --background: #f5f2ed;
+    --surface: #fffefa;
+    --surface-secondary: #e8eee8;
+
+    /* MAIN COLOURS */
+    --primary: #36594e;
+    --primary-hover: #29483e;
+
+    --accent: #9a8065;
+    --accent-hover: #80674f;
+
+    /* TEXT */
+    --text: #303a34;
+    --text-light: #ffffff;
+    --text-muted: #7c857e;
+
+    /* BORDERS */
+    --border: #deded6;
+
+    /* STATUS */
+    --success: #679b83;
+    --warning: #d5a45f;
+    --danger: #c87979;
+}
+
+
+/* ==================================================
+   GENERAL STYLING
+================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+header {
+    background-color: var(--primary);
+    color: var(--text-light);
+    text-align: center;
+    padding: 30px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    margin: 8px 0 0;
+    font-size: 14px;
+}
+
+
+/* ==================================================
+   NAVIGATION
+================================================== */
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 18px;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+button {
+    padding: 10px 16px;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+
+/* ==================================================
+   MAIN CONTENT
+================================================== */
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+section {
+    background-color: var(--surface);
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+}
+
+
+/* ==================================================
+   MOBILE RESPONSIVENESS
+================================================== */
+
+@media (max-width: 600px) {
+
+    nav {
+        gap: 7px;
+        padding: 12px;
+    }
+
+    nav button {
+        flex: 1 1 28%;
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+
+    main {
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    section {
+        padding: 18px;
+    }
+
+}
