@@ -400,3 +400,44 @@ section {
     flex-direction: column;
     gap: 12px;
 }
+
+
+/* ==================================================
+   FOOD DIARY ENTRIES
+================================================== */
+
+.meal-section {
+    margin-bottom: 25px;
+}
+
+.meal-section h4 {
+    color: var(--primary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+}
+
+.food-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    background-color: var(--surface-secondary);
+    border-radius: 10px;
+}
+
+.food-entry p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.food-entry button {
+    background-color: var(--danger);
+    border-color: var(--danger);
+    padding: 8px 12px;
+    font-size: 12px;
+    flex-shrink: 0;
+}
