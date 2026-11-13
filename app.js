@@ -478,14 +478,13 @@ function displayFoodSearchResults(products) {
         const nutrition = product.nutriments || {};
 
         const foodName = product.product_name || "Unnamed food";
-
         const brand = product.brands || "Unknown brand";
 
-        const calories = nutrition["energy-kcal_100g"] || 0;
-        const protein = nutrition.proteins_100g || 0;
-        const carbs = nutrition.carbohydrates_100g || 0;
-        const fat = nutrition.fat_100g || 0;
-        const fibre = nutrition.fiber_100g || 0;
+        const calories = Number(nutrition["energy-kcal_100g"]) || 0;
+        const protein = Number(nutrition.proteins_100g) || 0;
+        const carbs = Number(nutrition.carbohydrates_100g) || 0;
+        const fat = Number(nutrition.fat_100g) || 0;
+        const fibre = Number(nutrition.fiber_100g) || 0;
 
         const foodCard = document.createElement("div");
         foodCard.className = "nutrition-card food-search-card";
@@ -503,10 +502,66 @@ function displayFoodSearchResults(products) {
         const servingText = document.createElement("p");
         servingText.textContent = "Nutrition values per 100 g";
 
+        const servingInput = document.createElement("input");
+        servingInput.type = "number";
+        servingInput.min = "1";
+        servingInput.value = "100";
+        servingInput.placeholder = "Serving size in grams";
+
+        const mealSelect = document.createElement("select");
+
+        ["Breakfast", "Lunch", "Dinner", "Snack"].forEach(meal => {
+            const option = document.createElement("option");
+            option.value = meal;
+            option.textContent = meal;
+            mealSelect.appendChild(option);
+        });
+
+        const addButton = document.createElement("button");
+        addButton.type = "button";
+        addButton.textContent = "Add to Diary";
+
+        addButton.addEventListener("click", () => {
+
+            const serving = Number(servingInput.value);
+
+            if (!serving || serving <= 0) {
+                alert("Please enter a valid serving size.");
+                return;
+            }
+
+            const multiplier = serving / 100;
+
+            const newEntry = {
+                id: Date.now() + Math.random(),
+                date: getTodayDate(),
+                name: foodName,
+                meal: mealSelect.value,
+                serving: `${serving} g`,
+                calories: calories * multiplier,
+                protein: protein * multiplier,
+                carbs: carbs * multiplier,
+                fat: fat * multiplier,
+                fibre: fibre * multiplier
+            };
+
+            foodEntries.push(newEntry);
+
+            saveFoodEntries();
+            displayFoodEntries();
+            updateNutritionDashboard();
+
+            alert(`${foodName} added to your Food Diary!`);
+
+        });
+
         foodCard.appendChild(nameHeading);
         foodCard.appendChild(brandText);
         foodCard.appendChild(nutritionText);
         foodCard.appendChild(servingText);
+        foodCard.appendChild(servingInput);
+        foodCard.appendChild(mealSelect);
+        foodCard.appendChild(addButton);
 
         foodSearchResults.appendChild(foodCard);
 
