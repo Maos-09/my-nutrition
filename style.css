@@ -181,8 +181,7 @@ section {
     height: 190px;
     border-radius: 50%;
     background: conic-gradient(
-        var(--success) 0deg,
-        var(--surface) 0deg
+        var(--success) 0deg 360deg
     );
     display: flex;
     align-items: center;
