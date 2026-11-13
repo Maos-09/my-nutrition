@@ -238,10 +238,45 @@
 
 
         <!-- MY FOODS SECTION -->
-        <section id="foodsSection">
-            <h2>My Foods</h2>
-            <p>Search, add and save your favourite foods and recipes.</p>
-        </section>
+<section id="foodsSection">
+
+    <div class="dashboard-heading">
+        <h2>My Foods</h2>
+        <p>Find foods, check their nutrition and save your favourites.</p>
+    </div>
+
+    <!-- FOOD DATABASE SEARCH -->
+    <div class="nutrition-card">
+        <h3>Search Food Database</h3>
+
+        <div class="form-group">
+            <label for="foodSearchInput">Search for a food</label>
+            <input
+                type="text"
+                id="foodSearchInput"
+                placeholder="e.g. Greek yoghurt, chicken breast..."
+            >
+        </div>
+
+        <button type="button" id="foodSearchButton">
+            Search Foods
+        </button>
+
+        <div id="foodSearchResults">
+            <p>Search for a food to see its nutrition information.</p>
+        </div>
+    </div>
+
+    <!-- SAVED FOODS -->
+    <div class="nutrition-card">
+        <h3>My Saved Foods</h3>
+
+        <div id="savedFoodsContainer">
+            <p>You haven't saved any foods yet.</p>
+        </div>
+    </div>
+
+</section>
 
 
         <!-- PROGRESS SECTION -->
