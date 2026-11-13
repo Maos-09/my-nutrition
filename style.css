@@ -145,3 +145,200 @@ section {
     }
 
 }
+
+/* ==================================================
+   HOME DASHBOARD
+================================================== */
+
+.dashboard-heading {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.dashboard-heading p {
+    color: var(--text-muted);
+}
+
+
+/* ==================================================
+   CALORIE CARD
+================================================== */
+
+.calorie-card {
+    background-color: var(--surface-secondary);
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.calorie-card h3 {
+    margin-top: 0;
+}
+
+.calorie-ring {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--success) 0deg,
+        var(--surface) 0deg
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px auto;
+}
+
+.calorie-ring-inner {
+    width: 155px;
+    height: 155px;
+    border-radius: 50%;
+    background-color: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.calorie-ring-inner h2 {
+    font-size: 36px;
+    margin: 0;
+    color: var(--primary);
+}
+
+.calorie-ring-inner p {
+    margin: 5px 0 0;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+
+/* ==================================================
+   CALORIE SUMMARY
+================================================== */
+
+.calorie-summary {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.calorie-summary div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.calorie-summary strong {
+    font-size: 22px;
+    color: var(--primary);
+}
+
+.calorie-summary span {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+
+/* ==================================================
+   NUTRITION CARDS
+================================================== */
+
+.nutrition-card {
+    background-color: var(--surface);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.nutrition-card h3 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+
+/* ==================================================
+   MACRONUTRIENT PROGRESS
+================================================== */
+
+.macro-item {
+    margin-bottom: 22px;
+}
+
+.macro-item:last-child {
+    margin-bottom: 0;
+}
+
+.macro-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 9px;
+    font-size: 14px;
+}
+
+.macro-heading span {
+    color: var(--text-muted);
+}
+
+.progress-track {
+    width: 100%;
+    height: 10px;
+    background-color: var(--surface-secondary);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.protein-fill {
+    background-color: #679b83;
+}
+
+.carbs-fill {
+    background-color: #d5a45f;
+}
+
+.fat-fill {
+    background-color: #9a8065;
+}
+
+.fibre-fill {
+    background-color: #8294a5;
+}
+
+
+/* ==================================================
+   MOBILE DASHBOARD
+================================================== */
+
+@media (max-width: 600px) {
+
+    .calorie-card,
+    .nutrition-card {
+        padding: 20px;
+    }
+
+    .calorie-ring {
+        width: 175px;
+        height: 175px;
+    }
+
+    .calorie-ring-inner {
+        width: 143px;
+        height: 143px;
+    }
+
+    .macro-heading {
+        font-size: 13px;
+    }
+
+}
