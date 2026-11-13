@@ -413,3 +413,48 @@ foodEntryForm.addEventListener("submit", function(event) {
 // ==================================================
 
 displayFoodEntries();
+
+// ==================================================
+// MY FOODS - FOOD DATABASE SEARCH
+// ==================================================
+
+const foodSearchButton = document.getElementById("foodSearchButton");
+
+const foodSearchInput = document.getElementById("foodSearchInput");
+
+const foodSearchResults = document.getElementById("foodSearchResults");
+
+foodSearchButton.addEventListener("click", searchFoodDatabase);
+
+async function searchFoodDatabase() {
+
+    const searchTerm = foodSearchInput.value.trim();
+
+    if (searchTerm === "") {
+        alert("Please enter a food to search for.");
+        return;
+    }
+
+    foodSearchResults.innerHTML = "<p>Searching for foods...</p>";
+
+    try {
+
+        const response = await fetch(
+            `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(searchTerm)}&search_simple=1&action=process&json=1&page_size=10`
+        );
+
+        if (!response.ok) {
+            throw new Error("Unable to contact food database.");
+        }
+
+        const data = await response.json();
+
+        displayFoodSearchResults(data.products || []);
+
+    } catch (error) {
+
+        foodSearchResults.innerHTML =
+            "<p>Sorry, we couldn't connect to the food database. Please try again.</p>";
+
+    }
+}
