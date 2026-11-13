@@ -490,3 +490,39 @@ select:focus {
 #foodEntriesContainer > p {
     color: var(--text-muted);
 }
+
+/* ==================================================
+    OCEAN THEME - DASHBOARD CARDS
+================================================== */
+
+.calorie-card,
+.nutrition-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.calorie-card h3,
+.nutrition-card h3 {
+    color: var(--text);
+}
+
+.dashboard-heading h2 {
+    color: var(--text);
+}
+
+.dashboard-heading p {
+    color: var(--text-muted);
+}
+
+.macro-heading strong {
+    color: var(--text);
+}
+
+.macro-heading span {
+    color: var(--text-muted);
+}
+
+.progress-track {
+    background-color: var(--surface-secondary);
+}
