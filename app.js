@@ -458,3 +458,58 @@ async function searchFoodDatabase() {
 
     }
 }
+
+// ==================================================
+// MY FOODS - DISPLAY SEARCH RESULTS
+// ==================================================
+
+function displayFoodSearchResults(products) {
+
+    foodSearchResults.innerHTML = "";
+
+    if (products.length === 0) {
+        foodSearchResults.innerHTML =
+            "<p>No matching foods found. Try another search.</p>";
+        return;
+    }
+
+    products.forEach(product => {
+
+        const nutrition = product.nutriments || {};
+
+        const foodName = product.product_name || "Unnamed food";
+
+        const brand = product.brands || "Unknown brand";
+
+        const calories = nutrition["energy-kcal_100g"] || 0;
+        const protein = nutrition.proteins_100g || 0;
+        const carbs = nutrition.carbohydrates_100g || 0;
+        const fat = nutrition.fat_100g || 0;
+        const fibre = nutrition.fiber_100g || 0;
+
+        const foodCard = document.createElement("div");
+        foodCard.className = "nutrition-card food-search-card";
+
+        const nameHeading = document.createElement("h4");
+        nameHeading.textContent = foodName;
+
+        const brandText = document.createElement("p");
+        brandText.textContent = brand;
+
+        const nutritionText = document.createElement("p");
+        nutritionText.textContent =
+            `${calories} kcal | Protein: ${protein} g | Carbs: ${carbs} g | Fat: ${fat} g | Fibre: ${fibre} g`;
+
+        const servingText = document.createElement("p");
+        servingText.textContent = "Nutrition values per 100 g";
+
+        foodCard.appendChild(nameHeading);
+        foodCard.appendChild(brandText);
+        foodCard.appendChild(nutritionText);
+        foodCard.appendChild(servingText);
+
+        foodSearchResults.appendChild(foodCard);
+
+    });
+
+}
