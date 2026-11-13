@@ -353,3 +353,50 @@ section {
     }
 
 }
+
+
+/* ==================================================
+   FOOD DIARY FORM
+================================================== */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--surface);
+    color: var(--text);
+    font-size: 15px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: 2px solid var(--success);
+    border-color: var(--success);
+}
+
+#foodEntryForm button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+}
+
+#foodEntriesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
