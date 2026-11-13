@@ -32,11 +32,126 @@
     <main>
 
         
-        <!-- HOME SECTION -->
+        
+        <!-- HOME DASHBOARD -->
         <section id="homeSection">
-            <h2>Welcome to My Nutrition</h2>
-            <p>Track your food, understand your nutrition and work towards your goals.</p>
+
+            <div class="dashboard-heading">
+                <h2>Today's Overview</h2>
+                <p>Your daily nutrition at a glance.</p>
+            </div>
+
+            <!-- CALORIE SUMMARY -->
+            <div class="calorie-card">
+
+                <h3>Daily Calories</h3>
+
+                <div class="calorie-ring">
+
+                    <div class="calorie-ring-inner">
+                        <h2 id="caloriesRemaining">1500</h2>
+                        <p>Remaining</p>
+                    </div>
+
+                </div>
+
+                <div class="calorie-summary">
+
+                    <div>
+                        <strong id="caloriesConsumed">0</strong>
+                        <span>Consumed</span>
+                    </div>
+
+                    <div>
+                        <strong id="calorieTarget">1500</strong>
+                        <span>Daily Goal</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MACRONUTRIENT SUMMARY -->
+            <div class="nutrition-card">
+
+                <h3>Daily Nutrition</h3>
+
+                <!-- PROTEIN -->
+                <div class="macro-item">
+
+                    <div class="macro-heading">
+                        <strong>Protein</strong>
+                        <span id="proteinAmount">0 / 110 g</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill protein-fill" id="proteinProgress"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- CARBOHYDRATES -->
+                <div class="macro-item">
+
+                    <div class="macro-heading">
+                        <strong>Carbohydrates</strong>
+                        <span id="carbsAmount">0 / 141 g</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill carbs-fill" id="carbsProgress"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- FAT -->
+                <div class="macro-item">
+
+                    <div class="macro-heading">
+                        <strong>Fat</strong>
+                        <span id="fatAmount">0 / 55 g</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill fat-fill" id="fatProgress"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- FIBRE -->
+                <div class="macro-item">
+
+                    <div class="macro-heading">
+                        <strong>Fibre</strong>
+                        <span id="fibreAmount">0 / 25 g</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill fibre-fill" id="fibreProgress"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TODAY'S FOOD -->
+            <div class="nutrition-card">
+
+                <h3>Today's Food</h3>
+
+                <p id="todayFoodSummary">
+                    No food entries yet. Start by logging your first meal!
+                </p>
+
+            </div>
+
         </section>
+
 
 
         <!-- FOOD DIARY SECTION -->
