@@ -559,3 +559,23 @@ label {
 .form-group label {
     color: var(--text);
 }
+
+/* ==================================================
+    OCEAN THEME - NAVIGATION
+================================================== */
+
+nav {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+nav button {
+    background-color: var(--surface-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+nav button:hover {
+    background-color: var(--primary-hover);
+    color: var(--text);
+}
