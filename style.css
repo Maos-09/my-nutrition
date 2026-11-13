@@ -526,3 +526,36 @@ select:focus {
 .progress-track {
     background-color: var(--surface-secondary);
 }
+
+/* ==================================================
+    OCEAN THEME - GENERAL SECTIONS
+================================================== */
+
+section {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+section h2,
+section h3 {
+    color: var(--text);
+}
+
+section p {
+    color: var(--text-muted);
+}
+
+label {
+    color: var(--text);
+}
+
+.form-group input,
+.form-group select {
+    background-color: var(--surface-secondary);
+    color: var(--text);
+}
+
+.form-group label {
+    color: var(--text);
+}
