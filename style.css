@@ -175,7 +175,7 @@ section {
 
 
 /* ==================================================
-   CALORIE PROGRESS CIRCLE
+    CALORIE PROGRESS CIRCLE
 ================================================== */
 
 .calorie-ring {
@@ -184,8 +184,11 @@ section {
     min-width: 190px;
     min-height: 190px;
     border-radius: 50%;
-    background-color: #679b83;
-    background-image: conic-gradient(#679b83 0deg 360deg);
+    background-color: var(--surface-secondary);
+    background-image: conic-gradient(
+        var(--accent) 0deg,
+        var(--surface-secondary) 0deg 360deg
+    );
     display: flex;
     align-items: center;
     justify-content: center;
@@ -199,28 +202,23 @@ section {
     min-width: 155px;
     min-height: 155px;
     border-radius: 50%;
-    background-color: #fffefa;
+    background-color: var(--surface);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
     z-index: 1;
+    color: var(--text);
 }
 
-
 .calorie-ring-inner h2 {
-    font-size: 36px;
-    margin: 0;
-    color: var(--primary);
+    color: var(--text);
 }
 
 .calorie-ring-inner p {
-    margin: 5px 0 0;
     color: var(--text-muted);
-    font-size: 14px;
 }
-
 
 /* ==================================================
    CALORIE SUMMARY
@@ -239,16 +237,17 @@ section {
     gap: 5px;
 }
 
+/* ==================================================
+    CALORIE SUMMARY TEXT
+================================================== */
+
 .calorie-summary strong {
-    font-size: 22px;
-    color: var(--primary);
+    color: var(--text);
 }
 
 .calorie-summary span {
-    font-size: 13px;
     color: var(--text-muted);
 }
-
 
 /* ==================================================
    NUTRITION CARDS
@@ -307,22 +306,16 @@ section {
     transition: width 0.3s ease;
 }
 
-.protein-fill {
-    background-color: #679b83;
-}
+/* ==================================================
+    NUTRITION PROGRESS BAR COLOURS
+================================================== */
 
-.carbs-fill {
-    background-color: #d5a45f;
-}
-
-.fat-fill {
-    background-color: #9a8065;
-}
-
+.protein-fill,
+.carbs-fill,
+.fat-fill,
 .fibre-fill {
-    background-color: #8294a5;
+    background-color: var(--accent);
 }
-
 
 /* ==================================================
    MOBILE DASHBOARD
