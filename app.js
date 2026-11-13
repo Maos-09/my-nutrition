@@ -256,3 +256,160 @@ function updateNutritionDashboard() {
 // ==================================================
 
 updateNutritionDashboard();
+
+
+// ==================================================
+// FOOD DIARY - ADD FOOD ENTRIES
+// ==================================================
+
+const foodEntryForm = document.getElementById("foodEntryForm");
+
+
+// ==================================================
+// DISPLAY FOOD ENTRIES
+// ==================================================
+
+function displayFoodEntries() {
+
+    const container = document.getElementById("foodEntriesContainer");
+
+    const dailyData = calculateDailyNutrition();
+
+    container.innerHTML = "";
+
+    if (dailyData.entries.length === 0) {
+
+        container.innerHTML = "<p>No food entries yet.</p>";
+        return;
+
+    }
+
+    const mealTypes = [
+        "Breakfast",
+        "Lunch",
+        "Dinner",
+        "Snack"
+    ];
+
+    mealTypes.forEach(meal => {
+
+        const mealEntries = dailyData.entries.filter(entry =>
+            entry.meal === meal
+        );
+
+        if (mealEntries.length === 0) return;
+
+        const mealSection = document.createElement("div");
+        mealSection.className = "meal-section";
+
+        const mealHeading = document.createElement("h4");
+        mealHeading.textContent = meal;
+
+        mealSection.appendChild(mealHeading);
+
+        mealEntries.forEach(entry => {
+
+            const foodItem = document.createElement("div");
+            foodItem.className = "food-entry";
+
+            const foodDetails = document.createElement("div");
+
+            const foodName = document.createElement("strong");
+            foodName.textContent = entry.name;
+
+            const foodServing = document.createElement("p");
+            foodServing.textContent =
+                `${entry.serving} · ${entry.calories} kcal`;
+
+            foodDetails.appendChild(foodName);
+            foodDetails.appendChild(foodServing);
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.type = "button";
+
+            deleteButton.addEventListener("click", () => {
+
+                foodEntries = foodEntries.filter(item =>
+                    item.id !== entry.id
+                );
+
+                saveFoodEntries();
+                displayFoodEntries();
+                updateNutritionDashboard();
+
+            });
+
+            foodItem.appendChild(foodDetails);
+            foodItem.appendChild(deleteButton);
+
+            mealSection.appendChild(foodItem);
+
+        });
+
+        container.appendChild(mealSection);
+
+    });
+
+}
+
+
+// ==================================================
+// HANDLE FOOD FORM SUBMISSION
+// ==================================================
+
+foodEntryForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const newEntry = {
+
+        id: Date.now() + Math.random(),
+
+        date: getTodayDate(),
+
+        name: document.getElementById("foodName").value.trim(),
+
+        meal: document.getElementById("mealType").value,
+
+        serving: document.getElementById("foodServing").value.trim(),
+
+        calories: Number(document.getElementById("foodCalories").value),
+
+        protein: Number(document.getElementById("foodProtein").value),
+
+        carbs: Number(document.getElementById("foodCarbs").value),
+
+        fat: Number(document.getElementById("foodFat").value),
+
+        fibre: Number(document.getElementById("foodFibre").value)
+
+    };
+
+
+    // SAVE FOOD ENTRY
+
+    foodEntries.push(newEntry);
+
+    saveFoodEntries();
+
+
+    // CLEAR FORM
+
+    foodEntryForm.reset();
+
+
+    // REFRESH APP
+
+    displayFoodEntries();
+
+    updateNutritionDashboard();
+
+});
+
+
+// ==================================================
+// INITIALISE FOOD DIARY
+// ==================================================
+
+displayFoodEntries();
