@@ -579,3 +579,59 @@ nav button:hover {
     background-color: var(--primary-hover);
     color: var(--text);
 }
+
+/* ==================================================
+    OCEAN THEME - FOOD SEARCH CONTROLS
+================================================== */
+
+.food-search-card {
+    margin-bottom: 15px;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.food-search-card h4 {
+    color: var(--text);
+    font-size: 16px;
+    margin: 0 0 8px;
+}
+
+.food-search-card p {
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.food-search-card input,
+.food-search-card select {
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--surface-secondary);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.food-search-card input::placeholder {
+    color: var(--text-muted);
+}
+
+.food-search-card button {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 8px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.food-search-card input:focus,
+.food-search-card select:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
