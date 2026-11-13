@@ -4,27 +4,29 @@
 ================================================== */
 
 :root {
-    /* BACKGROUNDS */
-    --background: #edf4f7;
-    --surface: #fbfdfe;
-    --surface-secondary: #e1edf2;
 
-    /* MAIN COLOURS */
-    --primary: #315f75;
-    --primary-hover: #254b60;
-    --accent: #6b9eaa;
-    --accent-hover: #568795;
+    /* MAIN BACKGROUNDS */
+    --background: #06141b;
+    --surface: #11212d;
+    --surface-secondary: #253745;
 
-    /* TEXT */
-    --text: #293b43;
-    --text-light: #ffffff;
-    --text-muted: #71858c;
+    /* MAIN THEME COLOURS */
+    --primary: #253745;
+    --primary-hover: #4a5c6a;
+    --accent: #9babab;
+    --accent-hover: #ccd0cf;
+
+    /* TEXT COLOURS */
+    --text: #ccd0cf;
+    --text-light: #ccd0cf;
+    --text-muted: #9babab;
 
     /* BORDERS AND STATUS */
-    --border: #d3e1e6;
-    --success: #5d9e91;
-    --warning: #d5a45f;
-    --danger: #c87979;
+    --border: #4a5c6a;
+    --success: #9babab;
+    --warning: #9babab;
+    --danger: #4a5c6a;
+
 }
 
 /* ==================================================
