@@ -431,3 +431,35 @@ section {
     font-size: 12px;
     flex-shrink: 0;
 }
+
+/* ==================================================
+    OCEAN THEME - BUTTONS AND INPUTS
+================================================== */
+
+button {
+    background-color: var(--surface-secondary);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    color: var(--text);
+}
+
+input,
+select {
+    background-color: var(--surface-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+input::placeholder {
+    color: var(--text-muted);
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
