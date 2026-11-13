@@ -540,6 +540,44 @@ function displayFoodSearchResults(products) {
         addButton.type = "button";
         addButton.textContent = "Add to Diary";
 
+        // SAVE FOOD BUTTON
+const saveButton = document.createElement("button");
+saveButton.type = "button";
+saveButton.textContent = "Save Food";
+
+saveButton.addEventListener("click", () => {
+
+    const savedFood = {
+        id: Date.now() + Math.random(),
+        name: foodName,
+        brand: brand,
+        calories: calories,
+        protein: protein,
+        carbs: carbs,
+        fat: fat,
+        fibre: fibre
+    };
+
+    const alreadySaved = savedFoods.some(food =>
+        food.name === savedFood.name &&
+        food.brand === savedFood.brand
+    );
+
+    if (alreadySaved) {
+        alert("This food is already saved!");
+        return;
+    }
+
+    savedFoods.push(savedFood);
+
+    saveSavedFoods();
+
+    displaySavedFoods();
+
+    alert(`${foodName} saved to My Foods!`);
+
+});
+
         addButton.addEventListener("click", () => {
 
             const serving = Number(servingInput.value);
@@ -580,10 +618,69 @@ function displayFoodSearchResults(products) {
         foodCard.appendChild(servingText);
         foodCard.appendChild(servingInput);
         foodCard.appendChild(mealSelect);
+        foodCard.appendChild(saveButton);
         foodCard.appendChild(addButton);
-
+        
         foodSearchResults.appendChild(foodCard);
 
     });
 
 }
+
+// ==================================================
+// MY FOODS - DISPLAY SAVED FOODS
+// ==================================================
+
+function displaySavedFoods() {
+
+    const container = document.getElementById("savedFoodsContainer");
+
+    container.innerHTML = "";
+
+    if (savedFoods.length === 0) {
+        container.innerHTML = "<p>You haven't saved any foods yet.</p>";
+        return;
+    }
+
+    savedFoods.forEach(food => {
+
+        const foodCard = document.createElement("div");
+        foodCard.className = "nutrition-card food-search-card";
+
+        const foodHeading = document.createElement("h4");
+        foodHeading.textContent = food.name;
+
+        const brandText = document.createElement("p");
+        brandText.textContent = food.brand;
+
+        const nutritionText = document.createElement("p");
+        nutritionText.textContent =
+            `${food.calories} kcal | Protein: ${food.protein} g | Carbs: ${food.carbs} g | Fat: ${food.fat} g | Fibre: ${food.fibre} g per 100 g`;
+
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.textContent = "Remove Saved Food";
+
+        deleteButton.addEventListener("click", () => {
+
+            savedFoods = savedFoods.filter(item => item.id !== food.id);
+
+            saveSavedFoods();
+
+            displaySavedFoods();
+
+        });
+
+        foodCard.appendChild(foodHeading);
+        foodCard.appendChild(brandText);
+        foodCard.appendChild(nutritionText);
+        foodCard.appendChild(deleteButton);
+
+        container.appendChild(foodCard);
+
+    });
+
+}
+
+// LOAD SAVED FOODS
+displaySavedFoods();
