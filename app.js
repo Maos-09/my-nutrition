@@ -657,6 +657,62 @@ function displaySavedFoods() {
         nutritionText.textContent =
             `${food.calories} kcal | Protein: ${food.protein} g | Carbs: ${food.carbs} g | Fat: ${food.fat} g | Fibre: ${food.fibre} g per 100 g`;
 
+        // SERVING SIZE
+const servingInput = document.createElement("input");
+servingInput.type = "number";
+servingInput.min = "1";
+servingInput.value = "100";
+servingInput.placeholder = "Serving size in grams";
+
+// MEAL SELECTION
+const mealSelect = document.createElement("select");
+
+["Breakfast", "Lunch", "Dinner", "Snack"].forEach(meal => {
+    const option = document.createElement("option");
+    option.value = meal;
+    option.textContent = meal;
+    mealSelect.appendChild(option);
+});
+
+// ADD TO DIARY BUTTON
+const addButton = document.createElement("button");
+addButton.type = "button";
+addButton.textContent = "Add to Diary";
+
+addButton.addEventListener("click", () => {
+
+    const serving = Number(servingInput.value);
+
+    if (!serving || serving <= 0) {
+        alert("Please enter a valid serving size.");
+        return;
+    }
+
+    const multiplier = serving / 100;
+
+    const newEntry = {
+        id: Date.now() + Math.random(),
+        date: getTodayDate(),
+        name: food.name,
+        meal: mealSelect.value,
+        serving: `${serving} g`,
+        calories: food.calories * multiplier,
+        protein: food.protein * multiplier,
+        carbs: food.carbs * multiplier,
+        fat: food.fat * multiplier,
+        fibre: food.fibre * multiplier
+    };
+
+    foodEntries.push(newEntry);
+
+    saveFoodEntries();
+    displayFoodEntries();
+    updateNutritionDashboard();
+
+    alert(`${food.name} added to your Food Diary!`);
+
+});
+
         const deleteButton = document.createElement("button");
         deleteButton.type = "button";
         deleteButton.textContent = "Remove Saved Food";
@@ -674,6 +730,9 @@ function displaySavedFoods() {
         foodCard.appendChild(foodHeading);
         foodCard.appendChild(brandText);
         foodCard.appendChild(nutritionText);
+        foodCard.appendChild(servingInput);
+        foodCard.appendChild(mealSelect);
+        foodCard.appendChild(addButton);
         foodCard.appendChild(deleteButton);
 
         container.appendChild(foodCard);
