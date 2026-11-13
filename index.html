@@ -154,11 +154,87 @@
 
 
 
-        <!-- FOOD DIARY SECTION -->
-        <section id="diarySection">
-            <h2>Food Diary</h2>
-            <p>Your daily food entries will appear here.</p>
-        </section>
+        
+<!-- FOOD DIARY SECTION -->
+<section id="diarySection">
+
+    <div class="dashboard-heading">
+        <h2>Food Diary</h2>
+        <p>Record what you eat throughout the day.</p>
+    </div>
+
+    <!-- ADD FOOD FORM -->
+    <div class="nutrition-card">
+
+        <h3>Add Food</h3>
+
+        <form id="foodEntryForm">
+
+            <div class="form-group">
+                <label for="foodName">Food Name</label>
+                <input type="text" id="foodName" placeholder="e.g. Scrambled eggs" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mealType">Meal</label>
+                <select id="mealType" required>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Snack">Snack</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="foodServing">Serving Size</label>
+                <input type="text" id="foodServing" placeholder="e.g. 2 eggs or 100 g" required>
+            </div>
+
+            <div class="form-group">
+                <label for="foodCalories">Calories (kcal)</label>
+                <input type="number" id="foodCalories" min="0" step="any" required>
+            </div>
+
+            <div class="form-group">
+                <label for="foodProtein">Protein (g)</label>
+                <input type="number" id="foodProtein" min="0" step="any" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="foodCarbs">Carbohydrates (g)</label>
+                <input type="number" id="foodCarbs" min="0" step="any" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="foodFat">Fat (g)</label>
+                <input type="number" id="foodFat" min="0" step="any" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="foodFibre">Fibre (g)</label>
+                <input type="number" id="foodFibre" min="0" step="any" value="0">
+            </div>
+
+            <button type="submit">Add Food to Diary</button>
+
+        </form>
+
+    </div>
+
+
+    <!-- DAILY FOOD ENTRIES -->
+    <div class="nutrition-card">
+
+        <h3>Today's Entries</h3>
+
+        <div id="foodEntriesContainer">
+            <p>No food entries yet.</p>
+        </div>
+
+    </div>
+
+</section>
+
 
 
         <!-- MY FOODS SECTION -->
