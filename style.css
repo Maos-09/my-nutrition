@@ -176,29 +176,41 @@ section {
     margin-top: 0;
 }
 
+
+/* ==================================================
+   CALORIE PROGRESS CIRCLE
+================================================== */
+
 .calorie-ring {
     width: 190px;
     height: 190px;
+    min-width: 190px;
+    min-height: 190px;
     border-radius: 50%;
-    background: conic-gradient(
-        var(--success) 0deg 360deg
-    );
+    background-color: #679b83;
+    background-image: conic-gradient(#679b83 0deg 360deg);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 25px auto;
+    position: relative;
 }
 
 .calorie-ring-inner {
     width: 155px;
     height: 155px;
+    min-width: 155px;
+    min-height: 155px;
     border-radius: 50%;
-    background-color: var(--surface);
+    background-color: #fffefa;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
+
 
 .calorie-ring-inner h2 {
     font-size: 36px;
