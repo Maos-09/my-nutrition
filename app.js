@@ -424,14 +424,13 @@ function updateNutritionDashboard() {
     document.getElementById("fibreProgress").style.width =
         Math.min(100, totals.fibre / dailyFibreTarget * 100) + "%";
 
-
     // CALORIE PROGRESS CIRCLE
 
-    document.querySelector(".calorie-ring").style.background =
-        `conic-gradient(
-            var(--success) ${caloriePercentage * 3.6}deg,
-            var(--surface) ${caloriePercentage * 3.6}deg 360deg
-        )`;
+document.querySelector("#homeSection .calorie-ring").style.background =
+    `conic-gradient(
+        var(--accent) ${caloriePercentage * 3.6}deg,
+        var(--surface-secondary) ${caloriePercentage * 3.6}deg 360deg
+    )`;
 
 
     // TODAY'S FOOD SUMMARY
@@ -567,11 +566,11 @@ function updateProgressDashboard() {
 
     // CALORIE PROGRESS CIRCLE
 
-    document.querySelector("#progressSection .calorie-ring").style.background =
-        `conic-gradient(
-            var(--success) ${caloriePercentage * 3.6}deg,
-            var(--surface) ${caloriePercentage * 3.6}deg 360deg
-        )`;
+document.querySelector("#progressSection .calorie-ring").style.background =
+    `conic-gradient(
+        var(--accent) ${caloriePercentage * 3.6}deg,
+        var(--surface-secondary) ${caloriePercentage * 3.6}deg 360deg
+    )`;
 
 
     // FOOD SUMMARY
