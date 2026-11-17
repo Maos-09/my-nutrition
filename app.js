@@ -10,6 +10,59 @@ const foodsButton = document.getElementById("foodsButton");
 const goalsButton = document.getElementById("goalsButton");
 const progressButton = document.getElementById("progressButton");
 
+// CUSTOM APP POP-UP ELEMENTS
+const appModal = document.getElementById("appModal");
+const appModalMessage = document.getElementById("appModalMessage");
+const appModalCancelButton = document.getElementById("appModalCancelButton");
+const appModalConfirmButton = document.getElementById("appModalConfirmButton");
+
+
+// SHOW CUSTOM ALERT
+function showAppAlert(message) {
+
+    appModalMessage.textContent = message;
+
+    appModalCancelButton.style.display = "none";
+    appModalConfirmButton.textContent = "OK";
+
+    appModal.addEventListener("close", () => {
+        appModalCancelButton.style.display = "";
+    }, { once: true });
+
+    appModalConfirmButton.onclick = () => {
+        appModal.close();
+    };
+
+    appModal.showModal();
+}
+
+
+// SHOW CUSTOM CONFIRMATION
+function showAppConfirm(message) {
+
+    appModalMessage.textContent = message;
+
+    appModalCancelButton.style.display = "";
+    appModalConfirmButton.textContent = "Yes";
+
+    return new Promise(resolve => {
+
+        appModal.addEventListener("close", () => {
+            resolve(appModal.returnValue === "confirm");
+        }, { once: true });
+
+        appModalCancelButton.onclick = () => {
+            appModal.close("cancel");
+        };
+
+        appModalConfirmButton.onclick = () => {
+            appModal.close("confirm");
+        };
+
+        appModal.showModal();
+    });
+}
+
 // ==================================================
 // NAVIGATION FUNCTION
 // ==================================================
@@ -23,8 +76,16 @@ function showSection(sectionId) {
     });
 
     document.getElementById(sectionId).style.display = "block";
-}
 
+    // RESET FOOD SEARCH WHEN LEAVING MY FOODS
+    if (sectionId !== "foodsSection") {
+
+        document.getElementById("foodSearchInput").value = "";
+
+        document.getElementById("foodSearchResults").innerHTML =
+            "<p>Search for a food to see its nutrition information.</p>";
+    }
+}
 
 // ==================================================
 // NAVIGATION BUTTONS
@@ -375,19 +436,64 @@ function updateNutritionDashboard() {
 
     // TODAY'S FOOD SUMMARY
 
-    const foodSummary = document.getElementById("todayFoodSummary");
+const foodSummary = document.getElementById("todayFoodSummary");
 
-    if (dailyData.entries.length === 0) {
+foodSummary.innerHTML = "";
 
-        foodSummary.textContent =
-            "No food entries yet. Start by logging your first meal!";
+if (dailyData.entries.length === 0) {
 
-    } else {
+    foodSummary.innerHTML =
+        "<p>No food entries yet. Start by logging your first meal!</p>";
 
-        foodSummary.textContent =
-            `${dailyData.entries.length} food entries logged today.`;
+} else {
 
-    }
+    const mealTypes = [
+        "Breakfast",
+        "Lunch",
+        "Dinner",
+        "Snack"
+    ];
+
+    mealTypes.forEach(meal => {
+
+        const mealEntries = dailyData.entries.filter(entry =>
+            entry.meal === meal
+        );
+
+        if (mealEntries.length === 0) return;
+
+        const mealSection = document.createElement("div");
+        mealSection.className = "meal-section";
+
+        const mealHeading = document.createElement("h4");
+        mealHeading.textContent = meal;
+
+        mealSection.appendChild(mealHeading);
+
+        mealEntries.forEach(entry => {
+
+            const foodItem = document.createElement("div");
+            foodItem.className = "food-entry";
+
+            const foodName = document.createElement("strong");
+            foodName.textContent = entry.name;
+
+            const foodDetails = document.createElement("p");
+            foodDetails.textContent =
+                `${entry.serving} · ${Math.round(entry.calories)} kcal`;
+
+            foodItem.appendChild(foodName);
+            foodItem.appendChild(foodDetails);
+
+            mealSection.appendChild(foodItem);
+
+        });
+
+        foodSummary.appendChild(mealSection);
+
+    });
+
+}
 
 }
 
@@ -986,9 +1092,9 @@ goalsForm.addEventListener("submit", function(event) {
     ];
 
     if (newTargets.some(target => !Number.isFinite(target) || target <= 0)) {
-        alert("Please enter valid nutrition targets greater than zero.");
-        return;
-    }
+    showAppAlert("Please enter valid nutrition targets greater than zero.");
+    return;
+}
 
     // Update current targets
     dailyCalorieTarget = newCalorieTarget;
@@ -1009,7 +1115,7 @@ goalsForm.addEventListener("submit", function(event) {
     updateProgressDashboard();
     updateCalorieProgressChart();
 
-    alert("Your nutrition goals have been saved!");
+    showAppAlert("Your nutrition goals have been saved!");
 
 });
 
@@ -1045,7 +1151,7 @@ resetGoalsButton.addEventListener("click", function() {
     updateProgressDashboard();
     updateCalorieProgressChart();
 
-    alert("Your nutrition goals have been reset to default!");
+    showAppAlert("Your nutrition goals have been reset to default!");
 
 });
 
@@ -1250,7 +1356,7 @@ cancelButton.addEventListener("click", () => {
 saveButton.addEventListener("click", () => {
 
     if (!editName.value.trim()) {
-        alert("Please enter a food name.");
+        showAppAlert("Please enter a food name.");
         return;
     }
 
@@ -1288,7 +1394,7 @@ if (saveEditedFoodCheckbox.checked) {
         saveSavedFoods();
         displaySavedFoods();
     } else {
-        alert("This food is already saved in My Foods.");
+        showAppAlert("This food is already saved in My Foods.");
     }
 }
 
@@ -1302,9 +1408,8 @@ const deleteButton = document.createElement("button");
 deleteButton.textContent = "Delete";
 deleteButton.type = "button";
 
-deleteButton.addEventListener("click", () => {
-
-    const confirmDelete = confirm(
+deleteButton.addEventListener("click", async () => {
+    const confirmDelete = await showAppConfirm(
         `Are you sure you want to delete ${entry.name}?`
     );
 
@@ -1398,7 +1503,7 @@ foodEntryForm.addEventListener("submit", function(event) {
 
         } else {
 
-            alert("This food is already saved in My Foods.");
+            showAppAlert("This food is already saved in My Foods.");
 
         }
 
@@ -1438,6 +1543,15 @@ const foodSearchButton = document.getElementById("foodSearchButton");
 const foodSearchInput = document.getElementById("foodSearchInput");
 
 const foodSearchResults = document.getElementById("foodSearchResults");
+
+const clearFoodSearchButton = document.getElementById("clearFoodSearchButton");
+
+clearFoodSearchButton.addEventListener("click", () => {
+    foodSearchInput.value = "";
+
+    foodSearchResults.innerHTML =
+        "<p>Search for a food to see its nutrition information.</p>";
+});
 
 // ==================================================
 // MY FOODS - SAVED FOOD STORAGE
@@ -1495,7 +1609,7 @@ async function searchFoodDatabase() {
     foodSearchResults.innerHTML = "";
 
     if (searchTerm === "") {
-        alert("Please enter a food to search for.");
+        showAppAlert("Please enter a food to search for.");
         return;
     }
 
@@ -1668,7 +1782,7 @@ nutritionText.textContent =
             );
 
             if (alreadySaved) {
-                alert("This food is already saved!");
+                showAppAlert("This food is already saved!");
                 return;
             }
 
@@ -1677,7 +1791,7 @@ nutritionText.textContent =
             saveSavedFoods();
             displaySavedFoods();
 
-            alert(`${foodName} saved to My Foods!`);
+            showAppAlert(`${foodName} saved to My Foods!`);
 
         });
 
@@ -1691,7 +1805,7 @@ addButton.addEventListener("click", () => {
     const serving = Number(servingInput.value);
 
     if (!serving || serving <= 0) {
-        alert("Please enter a valid serving size.");
+        showAppAlert("Please enter a valid serving size.");
         return;
     }
 
@@ -1716,7 +1830,7 @@ addButton.addEventListener("click", () => {
     displayFoodEntries();
     updateNutritionDashboard();
 
-    alert(`${foodName} added to your Food Diary!`);
+    showAppAlert(`${foodName} added to your Food Diary!`);
 
 });
 
@@ -1877,7 +1991,7 @@ addButton.addEventListener("click", () => {
         const serving = Number(servingInput.value);
 
         if (!serving || serving <= 0) {
-            alert("Please enter a valid serving size.");
+            showAppAlert("Please enter a valid serving size.");
             return;
         }
 
@@ -1905,7 +2019,7 @@ addButton.addEventListener("click", () => {
     displayFoodEntries();
     updateNutritionDashboard();
 
-    alert(`${food.name} added to your Food Diary!`);
+    showAppAlert(`${food.name} added to your Food Diary!`);
 
 });
 
@@ -2057,7 +2171,7 @@ saveChangesButton.addEventListener("click", () => {
     ];
 
     if (name === "") {
-        alert("Please enter a food name.");
+        showAppAlert("Please enter a food name.");
         return;
     }
 
@@ -2066,7 +2180,7 @@ saveChangesButton.addEventListener("click", () => {
         !Number.isFinite(Number(value)) ||
         Number(value) < 0
     )) {
-        alert("Please enter valid nutrition values.");
+        showAppAlert("Please enter valid nutrition values.");
         return;
     }
 
