@@ -144,15 +144,15 @@
 
 
             <!-- TODAY'S FOOD -->
-            <div class="nutrition-card">
+<div class="nutrition-card">
 
-                <h3>Today's Food</h3>
+    <h3>Today's Food</h3>
 
-                <p id="todayFoodSummary">
-                    No food entries yet. Start by logging your first meal!
-                </p>
+    <div id="todayFoodSummary">
+        <p>No food entries yet. Start by logging your first meal!</p>
+    </div>
 
-            </div>
+</div>
 
         </section>
 
@@ -300,6 +300,9 @@
         <div id="foodSearchResults">
             <p>Search for a food to see its nutrition information.</p>
         </div>
+        <button type="button" id="clearFoodSearchButton">
+            Clear Search
+        </button>
     </div>
 
     <!-- SAVED FOODS -->
@@ -539,6 +542,21 @@
 </section>
 
     </main>
+
+    <!-- CUSTOM APP POP-UP -->
+<dialog id="appModal">
+    <p id="appModalMessage"></p>
+
+    <div class="app-modal-actions">
+        <button type="button" id="appModalCancelButton">
+            Cancel
+        </button>
+
+        <button type="button" id="appModalConfirmButton">
+            OK
+        </button>
+    </div>
+</dialog>
 
     <script src="app.js"></script>
 
