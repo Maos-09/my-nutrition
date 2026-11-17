@@ -733,6 +733,7 @@ nav button:hover {
     width: 100%;
     margin-top: 25px;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .calorie-chart {
@@ -854,4 +855,12 @@ nav button:hover {
 
 #goalsForm button:hover {
     background: var(--primary-hover);
+}
+
+/* ==================================================
+   PROGRESS - MOBILE CHART WIDTH
+================================================== */
+
+.calorie-chart.month-chart {
+    min-width: 900px;
 }
