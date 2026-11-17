@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Nutrition</title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#06141b">
+    <link rel="apple-touch-icon" href="images/my-nutrition-icon-192.png">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- MAIN APP HEADER -->
+    <header>
+        <h1>My Nutrition</h1>
+        <p>Your Space to Eat Well and Improve</p>
+    </header>
+
+    <!-- MAIN NAVIGATION -->
+    <nav>
+        <button id="homeButton">Home</button>
+        <button id="diaryButton">Food Diary</button>
+        <button id="foodsButton">My Foods</button>
+        <button id="progressButton">Progress</button>
+    </nav>
+
+    <!-- MAIN APP CONTENT -->
+    <main>
+
+        
+        
+        <!-- HOME DASHBOARD -->
+        <section id="homeSection">
+
+            <div class="dashboard-heading">
+                <h2>Today's Overview</h2>
+                <p>Your daily nutrition at a glance.</p>
+            </div>
+
+            <!-- CALORIE SUMMARY -->
+            <div class="calorie-card">
+
+                <h3>Daily Calories</h3>
+
+                <div class="calorie-ring">
+
+                    <div class="calorie-ring-inner">
+                        <h2 id="caloriesRemaining">1500</h2>
+                        <p>Remaining</p>
+                    </div>
+
+                </div>
+
+                <div class="calorie-summary">
+
+                    <div>
+                        <strong id="caloriesConsumed">0</strong>
+                        <span>Consumed</span>
+                    </div>
+
+                    <div>
+                        <strong id="calorieTarget">1500</strong>
+                        <span>Daily Goal</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MACRONUTRIENT SUMMARY -->
+            <div class="nutrition-card">
+
+                <h3>Daily Nutrition</h3>
+
+                <!-- PROTEIN -->
+                <div class="macro-item">
+
+                    <div class="macro-heading">
+                        <strong>Protein</strong>
+                        <span id="proteinAmount">0 / 110 g</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill protein-fill" id="proteinProgress"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- CARBOHYDRATES -->
+                <div class="macro-item">
+
+                    <div class="macro-heading">
+                        <strong>Carbohydrates</strong>
+                        <span id="carbsAmount">0 / 141 g</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill carbs-fill" id="carbsProgress"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- FAT -->
+                <div class="macro-item">
+
+                    <div class="macro-heading">
+                        <strong>Fat</strong>
+                        <span id="fatAmount">0 / 55 g</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill fat-fill" id="fatProgress"></div>
+                    </div>
+
+                </div>
+
+
+                <!-- FIBRE -->
+                <div class="macro-item">
+
+                    <div class="macro-heading">
+                        <strong>Fibre</strong>
+                        <span id="fibreAmount">0 / 25 g</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill fibre-fill" id="fibreProgress"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TODAY'S FOOD -->
+            <div class="nutrition-card">
+
+                <h3>Today's Food</h3>
+
+                <p id="todayFoodSummary">
+                    No food entries yet. Start by logging your first meal!
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        
+<!-- FOOD DIARY SECTION -->
+<section id="diarySection">
+
+    <div class="dashboard-heading">
+        <h2>Food Diary</h2>
+        <p>Record what you eat throughout the day.</p>
+    </div>
+
+    <!-- FOOD DIARY DATE SELECTOR -->
+<div class="nutrition-card">
+
+    <div class="form-group">
+        <label for="diaryDate">Select Date</label>
+        <input type="date" id="diaryDate">
+    </div>
+
+    <div class="date-navigation">
+        <button type="button" id="previousDateButton">
+            Previous Day
+        </button>
+
+        <button type="button" id="nextDateButton">
+            Next Day
+        </button>
+    </div>
+
+</div>
+
+    <!-- ADD FOOD FORM -->
+    <div class="nutrition-card">
+
+        <h3>Add Food</h3>
+
+        <form id="foodEntryForm">
+
+            <div class="form-group">
+                <label for="foodName">Food Name</label>
+                <input type="text" id="foodName" placeholder="e.g. Scrambled eggs" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mealType">Meal</label>
+                <select id="mealType" required>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Snack">Snack</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="foodServing">Serving Size</label>
+                <input type="text" id="foodServing" placeholder="e.g. 2 eggs or 100 g" required>
+            </div>
+
+            <div class="form-group">
+                <label for="foodCalories">Calories (kcal)</label>
+                <input type="number" id="foodCalories" min="0" step="any" required>
+            </div>
+
+            <div class="form-group">
+                <label for="foodProtein">Protein (g)</label>
+                <input type="number" id="foodProtein" min="0" step="any" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="foodCarbs">Carbohydrates (g)</label>
+                <input type="number" id="foodCarbs" min="0" step="any" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="foodFat">Fat (g)</label>
+                <input type="number" id="foodFat" min="0" step="any" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="foodFibre">Fibre (g)</label>
+                <input type="number" id="foodFibre" min="0" step="any" value="0">
+            </div>
+
+            <!-- SAVE FOOD TO MY FOODS -->
+            <div class="form-group save-food-option">
+
+                <label>
+                    <input type="checkbox" id="saveFoodToMyFoods">
+                    Save this food to My Foods
+                </label>
+
+            </div>
+
+            <button type="submit">Add Food to Diary</button>
+
+        </form>
+
+    </div>
+
+
+    <!-- DAILY FOOD ENTRIES -->
+    <div class="nutrition-card">
+
+        <h3>Today's Entries</h3>
+
+        <div id="foodEntriesContainer">
+            <p>No food entries yet.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+        <!-- MY FOODS SECTION -->
+<section id="foodsSection">
+
+    <div class="dashboard-heading">
+        <h2>My Foods</h2>
+        <p>Find foods, check their nutrition and save your favourites.</p>
+    </div>
+</div>
+
+    <!-- FOOD DATABASE SEARCH -->
+    <div class="nutrition-card">
+        <h3>Search Food Database</h3>
+
+        <div class="form-group">
+            <label for="foodSearchInput">Search for a food</label>
+            <input
+                type="text"
+                id="foodSearchInput"
+                placeholder="e.g. Greek yoghurt, chicken breast..."
+            >
+        </div>
+
+        <button type="button" id="foodSearchButton">
+            Search Foods
+        </button>
+
+        <div id="foodSearchResults">
+            <p>Search for a food to see its nutrition information.</p>
+        </div>
+    </div>
+
+    <!-- SAVED FOODS -->
+    <div class="nutrition-card">
+        <h3>My Saved Foods</h3>
+
+        <!-- SAVED FOOD FILTERS -->
+<div class="food-filter-buttons">
+
+    <button type="button" id="showAllFoodsButton">
+        All Foods
+    </button>
+
+    <button type="button" id="showFavouriteFoodsButton">
+        ⭐ Favourites
+    </button>
+
+</div>
+
+        <div id="savedFoodsContainer">
+            <p>You haven't saved any foods yet.</p>
+        </div>
+    </div>
+
+</section>
+
+
+        
+<!-- PROGRESS SECTION -->
+<section id="progressSection">
+
+    <div class="dashboard-heading">
+        <h2>My Progress</h2>
+        <p>See how your nutrition is tracking over time.</p>
+    </div>
+
+    <!-- DAILY PROGRESS -->
+    <div class="nutrition-card">
+
+        <h3>Daily Progress</h3>
+
+        <!-- PROGRESS DATE SELECTOR -->
+        <div class="form-group">
+            <label for="progressDate">Select Date</label>
+            <input type="date" id="progressDate">
+        </div>
+
+        <div class="date-navigation">
+            <button type="button" id="previousProgressDateButton">
+                Previous Day
+            </button>
+
+            <button type="button" id="nextProgressDateButton">
+                Next Day
+            </button>
+        </div>
+
+        <!-- DAILY CALORIE SUMMARY -->
+        <div class="calorie-card">
+
+            <h3>Daily Calories</h3>
+
+            <div class="calorie-ring">
+                <div class="calorie-ring-inner">
+                    <h2 id="progressCaloriesRemaining">1500</h2>
+                    <p>Remaining</p>
+                </div>
+            </div>
+
+            <div class="calorie-summary">
+
+                <div>
+                    <strong id="progressCaloriesConsumed">0</strong>
+                    <span>Consumed</span>
+                </div>
+
+                <div>
+                    <strong id="progressCalorieTarget">1500</strong>
+                    <span>Daily Goal</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DAILY MACRONUTRIENTS -->
+        <div class="nutrition-card">
+
+            <h3>Daily Nutrition</h3>
+
+            <div class="macro-item">
+                <div class="macro-heading">
+                    <strong>Protein</strong>
+                    <span id="progressProteinAmount">0 / 110 g</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill protein-fill" id="progressProteinBar"></div>
+                </div>
+            </div>
+
+            <div class="macro-item">
+                <div class="macro-heading">
+                    <strong>Carbohydrates</strong>
+                    <span id="progressCarbsAmount">0 / 141 g</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill carbs-fill" id="progressCarbsBar"></div>
+                </div>
+            </div>
+
+            <div class="macro-item">
+                <div class="macro-heading">
+                    <strong>Fat</strong>
+                    <span id="progressFatAmount">0 / 55 g</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill fat-fill" id="progressFatBar"></div>
+                </div>
+            </div>
+
+            <div class="macro-item">
+                <div class="macro-heading">
+                    <strong>Fibre</strong>
+                    <span id="progressFibreAmount">0 / 25 g</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill fibre-fill" id="progressFibreBar"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DAILY FOOD SUMMARY -->
+        <div class="nutrition-card">
+            <h3>Food Logged</h3>
+            <div id="progressFoodSummary">
+                <p>No food entries for this day.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- OVERALL PROGRESS -->
+    <div class="nutrition-card">
+
+        <h3>Overall Progress</h3>
+        <p>See your nutrition trends over a longer period.</p>
+
+        <div class="form-group">
+            <label for="progressPeriod">Choose Time Period</label>
+            <select id="progressPeriod">
+                <option value="week">Weekly</option>
+                <option value="month">Monthly</option>
+                <option value="year">Yearly</option>
+            </select>
+        </div>
+
+        <!-- OVERALL PROGRESS PERIOD NAVIGATION -->
+
+<div class="date-navigation">
+
+    <button type="button" id="previousPeriodButton">
+        Previous Week
+    </button>
+
+    <button type="button" id="nextPeriodButton">
+        Next Week
+    </button>
+
+</div>
+
+<p id="overallPeriodLabel"></p>
+
+        <div id="overallProgressSummary">
+
+            <!-- CALORIE INTAKE CHART -->
+
+<div class="nutrition-card">
+
+    <h3>Calorie Intake Over Time</h3>
+
+    <p>Daily calories compared with your 1,500 kcal goal.</p>
+
+    <div id="calorieProgressChart"></div>
+
+</div>
+
+    <p>
+        Average Daily Calories:
+        <strong id="averageDailyCalories">0 kcal</strong>
+    </p>
+
+    <p>
+        Total Calories:
+        <strong id="totalPeriodCalories">0 kcal</strong>
+    </p>
+
+    <p>
+        Days Food Logged:
+        <strong id="periodDaysLogged">0</strong>
+    </p>
+
+</div>
+
+    </div>
+
+</section>      
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
