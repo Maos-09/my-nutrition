@@ -28,6 +28,7 @@
         <button id="homeButton">Home</button>
         <button id="diaryButton">Food Diary</button>
         <button id="foodsButton">My Foods</button>
+        <button id="goalsButton">Goals</button>
         <button id="progressButton">Progress</button>
     </nav>
 
@@ -505,7 +506,41 @@
 
     </div>
 
-</section>      
+</section>
+
+<!-- GOALS SECTION -->
+<section id="goalsSection">
+
+    <div class="dashboard-heading">
+        <h2>My Goals</h2>
+        <p>Set your daily nutrition targets.</p>
+    </div>
+
+    <form id="goalsForm">
+
+        <label for="calorieGoal">Daily Calories (kcal)</label>
+        <input type="number" id="calorieGoal" min="1" step="1" value="1500" required>
+
+        <label for="proteinGoal">Daily Protein (g)</label>
+        <input type="number" id="proteinGoal" min="1" step="1" value="110" required>
+
+        <label for="carbsGoal">Daily Carbs (g)</label>
+        <input type="number" id="carbsGoal" min="1" step="1" value="141" required>
+
+        <label for="fatGoal">Daily Fat (g)</label>
+        <input type="number" id="fatGoal" min="1" step="1" value="55" required>
+
+        <label for="fibreGoal">Daily Fibre (g)</label>
+        <input type="number" id="fibreGoal" min="1" step="1" value="25" required>
+
+        <button type="submit">Save Goals</button>
+
+        <button type="button" id="resetGoalsButton">Reset to Default Goals</button>
+
+    </form>
+
+</section>
+
     </main>
 
     <script src="app.js"></script>
