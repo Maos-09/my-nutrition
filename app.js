@@ -1091,7 +1091,7 @@ goalsForm.addEventListener("submit", function(event) {
     ];
 
     if (newTargets.some(target => !Number.isFinite(target) || target <= 0)) {
-    showAppAlert("Please enter valid nutrition targets greater than zero.");
+    showAppAlert("Has to be more than zero bruhhh...");
     return;
 }
 
@@ -1114,7 +1114,7 @@ goalsForm.addEventListener("submit", function(event) {
     updateProgressDashboard();
     updateCalorieProgressChart();
 
-    showAppAlert("Your nutrition goals have been saved!");
+    showAppAlert("Goals are saved! God Speed x");
 
 });
 
@@ -1150,7 +1150,7 @@ resetGoalsButton.addEventListener("click", function() {
     updateProgressDashboard();
     updateCalorieProgressChart();
 
-    showAppAlert("Your nutrition goals have been reset to default!");
+    showAppAlert("System reset... Complete lol");
 
 });
 
@@ -1355,7 +1355,7 @@ cancelButton.addEventListener("click", () => {
 saveButton.addEventListener("click", () => {
 
     if (!editName.value.trim()) {
-        showAppAlert("Please enter a food name.");
+        showAppAlert("What's it called cuz ???");
         return;
     }
 
@@ -1393,7 +1393,7 @@ if (saveEditedFoodCheckbox.checked) {
         saveSavedFoods();
         displaySavedFoods();
     } else {
-        showAppAlert("This food is already saved in My Foods.");
+        showAppAlert("It's already saved in My Foods.. tsk tsk");
     }
 }
 
@@ -1502,7 +1502,7 @@ foodEntryForm.addEventListener("submit", function(event) {
 
         } else {
 
-            showAppAlert("This food is already saved in My Foods.");
+            showAppAlert("It's already saved in My Foods.. tsk tsk.");
 
         }
 
@@ -1608,7 +1608,7 @@ async function searchFoodDatabase() {
     foodSearchResults.innerHTML = "";
 
     if (searchTerm === "") {
-        showAppAlert("Please enter a food to search for.");
+        showAppAlert("Gotta write something my guy...");
         return;
     }
 
@@ -1781,7 +1781,7 @@ nutritionText.textContent =
             );
 
             if (alreadySaved) {
-                showAppAlert("This food is already saved!");
+                showAppAlert("It's already saved... tsk tsk");
                 return;
             }
 
@@ -1804,7 +1804,7 @@ addButton.addEventListener("click", () => {
     const serving = Number(servingInput.value);
 
     if (!serving || serving <= 0) {
-        showAppAlert("Please enter a valid serving size.");
+        showAppAlert("Need a valid serving size cuh...");
         return;
     }
 
@@ -1990,7 +1990,7 @@ addButton.addEventListener("click", () => {
         const serving = Number(servingInput.value);
 
         if (!serving || serving <= 0) {
-            showAppAlert("Please enter a valid serving size.");
+            showAppAlert("Need a valid serving size cuh...");
             return;
         }
 
@@ -2170,7 +2170,7 @@ saveChangesButton.addEventListener("click", () => {
     ];
 
     if (name === "") {
-        showAppAlert("Please enter a food name.");
+        showAppAlert("What's the name oi ?");
         return;
     }
 
@@ -2179,7 +2179,7 @@ saveChangesButton.addEventListener("click", () => {
         !Number.isFinite(Number(value)) ||
         Number(value) < 0
     )) {
-        showAppAlert("Please enter valid nutrition values.");
+        showAppAlert("Need a valid nutrition value cuh...");
         return;
     }
 
