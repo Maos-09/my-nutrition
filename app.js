@@ -7,6 +7,7 @@
 const homeButton = document.getElementById("homeButton");
 const diaryButton = document.getElementById("diaryButton");
 const foodsButton = document.getElementById("foodsButton");
+const goalsButton = document.getElementById("goalsButton");
 const progressButton = document.getElementById("progressButton");
 
 // ==================================================
@@ -41,6 +42,10 @@ foodsButton.addEventListener("click", () => {
     showSection("foodsSection");
 });
 
+goalsButton.addEventListener("click", () => {
+    showSection("goalsSection");
+});
+
 progressButton.addEventListener("click", () => {
 
     showSection("progressSection");
@@ -60,16 +65,27 @@ showSection("homeSection");
 
 
 // ==================================================
-// FOOD DIARY - STORAGE AND DAILY TARGETS
+// DAILY NUTRITION TARGETS
 // ==================================================
 
-// Daily nutrition targets
-const dailyCalorieTarget = 1500;
-const dailyProteinTarget = 110;
-const dailyCarbsTarget = 141;
-const dailyFatTarget = 55;
-const dailyFibreTarget = 25;
+// Load saved nutrition targets
+function loadNutritionTarget(key, defaultValue) {
 
+    const savedTarget = Number(localStorage.getItem(key));
+
+    if (Number.isFinite(savedTarget) && savedTarget > 0) {
+        return savedTarget;
+    }
+
+    return defaultValue;
+}
+
+// Current daily nutrition targets
+let dailyCalorieTarget = loadNutritionTarget("myNutritionCalorieTarget", 1500);
+let dailyProteinTarget = loadNutritionTarget("myNutritionProteinTarget", 110);
+let dailyCarbsTarget = loadNutritionTarget("myNutritionCarbsTarget", 141);
+let dailyFatTarget = loadNutritionTarget("myNutritionFatTarget", 55);
+let dailyFibreTarget = loadNutritionTarget("myNutritionFibreTarget", 25);
 
 // ==================================================
 // FOOD ENTRY STORAGE
@@ -923,6 +939,112 @@ const foodEntryForm = document.getElementById("foodEntryForm");
 
 // SAVE FOOD TO MY FOODS CHECKBOX
 const saveFoodToMyFoods = document.getElementById("saveFoodToMyFoods");
+
+// Goals form elements
+const goalsForm = document.getElementById("goalsForm");
+
+const calorieGoalInput = document.getElementById("calorieGoal");
+const proteinGoalInput = document.getElementById("proteinGoal");
+const carbsGoalInput = document.getElementById("carbsGoal");
+const fatGoalInput = document.getElementById("fatGoal");
+const fibreGoalInput = document.getElementById("fibreGoal");
+
+const resetGoalsButton = document.getElementById("resetGoalsButton");
+
+// Load current targets into the Goals form
+calorieGoalInput.value = dailyCalorieTarget;
+proteinGoalInput.value = dailyProteinTarget;
+carbsGoalInput.value = dailyCarbsTarget;
+fatGoalInput.value = dailyFatTarget;
+fibreGoalInput.value = dailyFibreTarget;
+
+// ==================================================
+// SAVE NUTRITION GOALS
+// ==================================================
+
+goalsForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    // Get the new target values
+    const newCalorieTarget = Number(calorieGoalInput.value);
+    const newProteinTarget = Number(proteinGoalInput.value);
+    const newCarbsTarget = Number(carbsGoalInput.value);
+    const newFatTarget = Number(fatGoalInput.value);
+    const newFibreTarget = Number(fibreGoalInput.value);
+
+    // Validate all targets
+    const newTargets = [
+        newCalorieTarget,
+        newProteinTarget,
+        newCarbsTarget,
+        newFatTarget,
+        newFibreTarget
+    ];
+
+    if (newTargets.some(target => !Number.isFinite(target) || target <= 0)) {
+        alert("Please enter valid nutrition targets greater than zero.");
+        return;
+    }
+
+    // Update current targets
+    dailyCalorieTarget = newCalorieTarget;
+    dailyProteinTarget = newProteinTarget;
+    dailyCarbsTarget = newCarbsTarget;
+    dailyFatTarget = newFatTarget;
+    dailyFibreTarget = newFibreTarget;
+
+    // Save targets to localStorage
+    localStorage.setItem("myNutritionCalorieTarget", dailyCalorieTarget);
+    localStorage.setItem("myNutritionProteinTarget", dailyProteinTarget);
+    localStorage.setItem("myNutritionCarbsTarget", dailyCarbsTarget);
+    localStorage.setItem("myNutritionFatTarget", dailyFatTarget);
+    localStorage.setItem("myNutritionFibreTarget", dailyFibreTarget);
+
+    // Refresh dashboards using the new targets
+    updateNutritionDashboard();
+    updateProgressDashboard();
+    updateCalorieProgressChart();
+
+    alert("Your nutrition goals have been saved!");
+
+});
+
+// ==================================================
+// RESET NUTRITION GOALS
+// ==================================================
+
+resetGoalsButton.addEventListener("click", function() {
+
+    // Restore default targets
+    dailyCalorieTarget = 1500;
+    dailyProteinTarget = 110;
+    dailyCarbsTarget = 141;
+    dailyFatTarget = 55;
+    dailyFibreTarget = 25;
+
+    // Update the input fields
+    calorieGoalInput.value = dailyCalorieTarget;
+    proteinGoalInput.value = dailyProteinTarget;
+    carbsGoalInput.value = dailyCarbsTarget;
+    fatGoalInput.value = dailyFatTarget;
+    fibreGoalInput.value = dailyFibreTarget;
+
+    // Save default targets
+    localStorage.setItem("myNutritionCalorieTarget", dailyCalorieTarget);
+    localStorage.setItem("myNutritionProteinTarget", dailyProteinTarget);
+    localStorage.setItem("myNutritionCarbsTarget", dailyCarbsTarget);
+    localStorage.setItem("myNutritionFatTarget", dailyFatTarget);
+    localStorage.setItem("myNutritionFibreTarget", dailyFibreTarget);
+
+    // Refresh dashboards
+    updateNutritionDashboard();
+    updateProgressDashboard();
+    updateCalorieProgressChart();
+
+    alert("Your nutrition goals have been reset to default!");
+
+});
 
 // ==================================================
 // DISPLAY FOOD ENTRIES
