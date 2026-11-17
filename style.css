@@ -864,3 +864,27 @@ nav button:hover {
 .calorie-chart.month-chart {
     min-width: 900px;
 }
+
+/* ==================================================
+   FOOD DIARY - MOBILE EDIT FORM
+================================================== */
+
+.food-entry {
+    flex-wrap: wrap;
+}
+
+.food-entry > div:first-child {
+    flex: 1;
+    min-width: 0;
+}
+
+.food-entry > button {
+    order: 1;
+}
+
+.food-entry > .food-edit-form {
+    order: 2;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+}
