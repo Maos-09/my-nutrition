@@ -184,11 +184,13 @@ section {
     min-width: 190px;
     min-height: 190px;
     border-radius: 50%;
-    background-color: var(--surface-secondary);
-    background-image: conic-gradient(
+
+    background: conic-gradient(
+        var(--accent) 0deg,
         var(--accent) 0deg,
         var(--surface-secondary) 0deg 360deg
     );
+
     display: flex;
     align-items: center;
     justify-content: center;
