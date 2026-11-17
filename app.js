@@ -879,13 +879,16 @@ function updateCalorieProgressChart() {
     const chartContainer = document.getElementById("calorieProgressChart");
 
     chartContainer.innerHTML = `
+    <div class="calorie-chart-wrapper">
+
+        <div class="calorie-chart-goal-label">
+            Goal: ${dailyCalorieTarget} kcal
+        </div>
+
         <div class="calorie-chart">
 
             <div class="calorie-chart-target"
                 style="bottom: ${100 - targetPosition}%">
-
-                <span>Goal: ${dailyCalorieTarget} kcal</span>
-
             </div>
 
             ${chartData.map(item => {
