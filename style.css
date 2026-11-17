@@ -888,3 +888,18 @@ nav button:hover {
     width: 100%;
     min-width: 0;
 }
+
+/* ==================================================
+   HIDE SCROLLBAR - APP APPEARANCE
+================================================== */
+
+html,
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
