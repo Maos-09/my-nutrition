@@ -806,3 +806,52 @@ nav button:hover {
     font-size: 11px;
     border-radius: 4px;
 }
+
+/* ==================================================
+   GOALS SECTION
+================================================== */
+
+#goalsForm {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#goalsForm label {
+    color: var(--text);
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+#goalsForm input {
+    background: var(--surface-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#goalsForm button {
+    margin-top: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#goalsForm button:hover {
+    background: var(--primary-hover);
+}
