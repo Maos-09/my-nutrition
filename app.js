@@ -885,7 +885,7 @@ function updateCalorieProgressChart() {
             Goal: ${dailyCalorieTarget} kcal
         </div>
 
-        <div class="calorie-chart">
+        <div class="calorie-chart ${period}-chart">
 
             <div class="calorie-chart-target"
                 style="bottom: ${100 - targetPosition}%">
